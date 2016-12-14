@@ -8,9 +8,16 @@ import com.orhanobut.logger.Logger;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         OkHttpUtils
                 .get()
-                .url("http://blog.csdn.net/data_hlk?viewmode=contents")
+                .url("http://blog.csdn.net/data_hlk/article/list/1")
                 .build().execute(new Callback() {
             @Override
             public Object parseNetworkResponse(Response response, int id) throws Exception {
+                //子线程
                 InputStream inputStream = response.body().byteStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -55,8 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Object response, int id) {
-                Logger.e("hlk", "onResponse" + response.toString());
-                tv_content.setText(response.toString());
+                String html = response.toString();
+                tv_content.setText(html);
+                Document document = Jsoup.parse(html);
+                List<Element> titleList = new ArrayList<Element>();
+                Elements linkTitle = document.getElementsByClass("link_title");
+                StringBuffer sb = new StringBuffer();
+                for (Element element : linkTitle) {
+                    titleList.add(element);
+                    sb.append(element.text());
+                }
+                tv_content.setText(sb.toString());
             }
         });
 
