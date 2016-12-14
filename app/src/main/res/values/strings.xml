@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">HlkBlog</string>
+    <string-array name="splash_title">
+        <item>"持着干干净净的初衷,赶很远的路"</item>
+        <item>"迷失的人迷失了,相逢的人会再相逢"</item>
+        <item>"一个人不应当虚度一天的时光"</item>
+        <item>"喜欢就在一起,别错过了相爱的最好时机"</item>
+        <item>"无法忍受的痛苦就一笑置之"</item>
+        <item>"抬起头,看到自己的希望"</item>
+        <item>"在时间的长河里,波澜不惊"</item>
+        <item>"每一条走上来的路,都有不得不跋涉的理由"</item>
+        <item>"越是看起来简单,内心越丰盛"</item>
+        <item>"踏实的学习,好好的积累"</item>
+        <item>"一切都是马上经历"</item>
+        <item>"是的,我很重要"</item>
+        <item>"明白了生活,懂得了自己"</item>
+        <item>"人生都是走着走着就开阔了"</item>
+        <item>"不用在乎别人的评价"</item>
+        <item>"把握每一天,享受每一天"</item>
+        <item>"任何时候都可以开始做自己想做的事"</item>
+        <item>"你只有足够努力,才能与你喜欢的更相配</item>
+    </string-array>
+</resources>
