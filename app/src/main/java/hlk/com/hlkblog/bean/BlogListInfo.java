@@ -21,6 +21,19 @@ public class BlogListInfo implements Serializable {
      */
     private String commentCount;
 
+    /**
+     * 写作时间
+     */
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String getTitle() {
         return title;
     }
