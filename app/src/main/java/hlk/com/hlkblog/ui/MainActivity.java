@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecycleView() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler_view.setLayoutManager(manager);
     }
 
