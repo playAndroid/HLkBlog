@@ -73,7 +73,7 @@ public class SplashActivity extends AppCompatActivity {
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(splashImage, "scaleX", 1F, SCALE_END);
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(splashImage, "scaleY", 1F, SCALE_END);
         AnimatorSet set = new AnimatorSet();
-        set.setDuration(3000).play(animatorX).with(animatorY);
+        set.setDuration(500).play(animatorX).with(animatorY);
         set.start();
 
         set.addListener(new AnimatorListenerAdapter() {
