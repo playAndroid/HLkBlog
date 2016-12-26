@@ -4,9 +4,33 @@
         android:id="@+id/my_blog"
         android:title="@string/app_name" />
     <item
-        android:id="@+id/other"
-        android:title="@string/app_name" />
+        android:id="@+id/peri"
+        android:title="@string/navigation_peri" />
     <item
-        android:id="@+id/other2"
-        android:title="@string/app_name" />
+        android:id="@+id/joke"
+        android:title="@string/navigation_joke" />
+    <item
+        android:id="@+id/news"
+        android:title="@string/navigation_news" />
+    <item
+        android:id="@+id/bored"
+        android:title="@string/navigation_bored" />
+    <item
+        android:id="@+id/share"
+        android:title="@string/navigation_share" />
+    <item
+        android:id="@+id/sweep"
+        android:title="@string/navigation_sweep" />
+    <item
+        android:id="@+id/robot"
+        android:title="@string/navigation_robot" />
+    <item
+        android:id="@+id/robot1"
+        android:title="@string/navigation_robot" />
+    <item
+        android:id="@+id/robot2"
+        android:title="@string/navigation_robot" />
+    <item
+        android:id="@+id/robot3"
+        android:title="@string/navigation_robot" />
 </menu>
