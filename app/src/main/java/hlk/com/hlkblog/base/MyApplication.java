@@ -16,6 +16,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         HttpUtils.initHttp();
+//        LogUtils.init("MyBlog");
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.

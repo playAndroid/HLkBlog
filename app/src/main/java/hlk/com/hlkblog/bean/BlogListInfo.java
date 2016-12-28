@@ -20,6 +20,10 @@ public class BlogListInfo implements Serializable {
      * 评论次数
      */
     private String commentCount;
+    /**
+     * 描述
+     */
+    private String article_description;
 
     /**
      * 写作时间
@@ -56,5 +60,13 @@ public class BlogListInfo implements Serializable {
 
     public void setCommentCount(String commentCount) {
         this.commentCount = commentCount;
+    }
+
+    public String getArticle_description() {
+        return article_description;
+    }
+
+    public void setArticle_description(String article_description) {
+        this.article_description = article_description;
     }
 }

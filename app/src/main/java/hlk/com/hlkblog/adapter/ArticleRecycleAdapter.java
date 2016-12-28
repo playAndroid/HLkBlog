@@ -29,7 +29,7 @@ public class ArticleRecycleAdapter extends RecyclerView.Adapter<ArticleRecycleAd
 
     @Override
     public ArticleRecycleAdapter.ViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_article_list, parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_article_list, parent, false);
         return new ViewHodler(view);
     }
 
@@ -39,6 +39,7 @@ public class ArticleRecycleAdapter extends RecyclerView.Adapter<ArticleRecycleAd
         holder.tv_read_count.setText(listData.get(position).getReadCount());
         holder.tv_time.setText(listData.get(position).getTime());
         holder.tv_comment_count.setText(listData.get(position).getCommentCount());
+        holder.tv_description.setText(listData.get(position).getArticle_description());
     }
 
     @Override
@@ -57,6 +58,8 @@ public class ArticleRecycleAdapter extends RecyclerView.Adapter<ArticleRecycleAd
         //        @Bind(R.id.tv_comment_count)
         TextView tv_comment_count;
 
+        TextView tv_description;
+
         public ViewHodler(View itemView) {
             super(itemView);
 //            ButterKnife.bind(itemView);
@@ -64,6 +67,7 @@ public class ArticleRecycleAdapter extends RecyclerView.Adapter<ArticleRecycleAd
             tv_time = (TextView) itemView.findViewById(R.id.tv_time);
             tv_read_count = (TextView) itemView.findViewById(R.id.tv_read_count);
             tv_comment_count = (TextView) itemView.findViewById(R.id.tv_comment_count);
+            tv_description = (TextView) itemView.findViewById(R.id.tv_description);
         }
     }
 }

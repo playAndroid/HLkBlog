@@ -13,6 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import hlk.com.hlkblog.R;
 import hlk.com.hlkblog.base.BaseActivity;
+import hlk.com.hlkblog.fragment.BlogFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -29,7 +30,12 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initTitle();
+        initData();
 
+    }
+
+    private void initData() {
+        replaceFragment(R.id.frame_content, new BlogFragment());
     }
 
     private void initTitle() {

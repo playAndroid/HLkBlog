@@ -31,6 +31,4 @@
             app:menu="@menu/main_navigation_items" />
 
     </android.support.v4.widget.DrawerLayout>
-
-
 </LinearLayout>
