@@ -7,6 +7,13 @@
     <string name="navigation_sweep">扫一扫</string>
     <string name="navigation_share">分享</string>
     <string name="navigation_robot">小智</string>
+    <string name="navigation_setup">设置</string>
+    <string name="navigation_gank">干货</string>
+    <string name="navigation_android">Android</string>
+    <string name="navigation_iOS">iOS</string>
+    <string name="navigation_weal">福利</string>
+    <string name="navigation_video">休息视频</string>
+    <string name="navigation_jiandan">煎蛋</string>
     <string-array name="splash_title">
         <item>"持着干干净净的初衷,赶很远的路"</item>
         <item>"迷失的人迷失了,相逢的人会再相逢"</item>

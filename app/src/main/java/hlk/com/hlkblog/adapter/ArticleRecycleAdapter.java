@@ -47,7 +47,7 @@ public class ArticleRecycleAdapter extends RecyclerView.Adapter<ArticleRecycleAd
         return listData.size();
     }
 
-    public class ViewHodler extends RecyclerView.ViewHolder {
+    class ViewHodler extends RecyclerView.ViewHolder {
 
         //        @Bind(R.id.tv_title)
         TextView tv_title;
@@ -60,7 +60,7 @@ public class ArticleRecycleAdapter extends RecyclerView.Adapter<ArticleRecycleAd
 
         TextView tv_description;
 
-        public ViewHodler(View itemView) {
+        ViewHodler(View itemView) {
             super(itemView);
 //            ButterKnife.bind(itemView);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);

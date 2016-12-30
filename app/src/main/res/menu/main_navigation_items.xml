@@ -1,36 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/my_blog"
-        android:title="@string/app_name" />
-    <item
-        android:id="@+id/peri"
-        android:title="@string/navigation_peri" />
-    <item
-        android:id="@+id/joke"
-        android:title="@string/navigation_joke" />
-    <item
-        android:id="@+id/news"
-        android:title="@string/navigation_news" />
-    <item
-        android:id="@+id/bored"
-        android:title="@string/navigation_bored" />
-    <item
-        android:id="@+id/share"
-        android:title="@string/navigation_share" />
-    <item
-        android:id="@+id/sweep"
-        android:title="@string/navigation_sweep" />
-    <item
-        android:id="@+id/robot"
-        android:title="@string/navigation_robot" />
-    <item
-        android:id="@+id/robot1"
-        android:title="@string/navigation_robot" />
-    <item
-        android:id="@+id/robot2"
-        android:title="@string/navigation_robot" />
-    <item
-        android:id="@+id/robot3"
-        android:title="@string/navigation_robot" />
+
+    <group>
+        <item
+            android:id="@+id/gank"
+            android:title="@string/navigation_gank">
+            <menu>
+                <item
+                    android:id="@+id/android"
+                    android:title="@string/navigation_android" />
+                <item
+                    android:id="@+id/ios"
+                    android:title="@string/navigation_iOS" />
+                <item
+                    android:id="@+id/weal"
+                    android:title="@string/navigation_weal" />
+                <item
+                    android:id="@+id/video"
+                    android:title="@string/navigation_video" />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/jiandan"
+            android:title="@string/navigation_jiandan">
+            <menu>
+                <item
+                    android:id="@+id/peri"
+                    android:title="@string/navigation_peri" />
+                <item
+                    android:id="@+id/joke"
+                    android:title="@string/navigation_joke" />
+                <item
+                    android:id="@+id/news"
+                    android:title="@string/navigation_news" />
+                <item
+                    android:id="@+id/bored"
+                    android:title="@string/navigation_bored" />
+            </menu>
+        </item>
+
+
+        <item
+            android:id="@+id/my_blog"
+            android:title="@string/app_name">
+            <menu>
+                <item
+                    android:id="@+id/my_blog1"
+                    android:title="@string/app_name" />
+                <item
+                    android:id="@+id/my_blog2"
+                    android:title="@string/app_name" />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/set_up"
+            android:title="@string/navigation_setup">
+            <menu>
+                <item
+                    android:id="@+id/set_up2"
+                    android:title="@string/navigation_setup" />
+                <item
+                    android:id="@+id/share"
+                    android:title="@string/navigation_share" />
+                <item
+                    android:id="@+id/sweep"
+                    android:title="@string/navigation_sweep" />
+                <item
+                    android:id="@+id/robot"
+                    android:title="@string/navigation_robot" />
+            </menu>
+        </item>
+    </group>
+
 </menu>

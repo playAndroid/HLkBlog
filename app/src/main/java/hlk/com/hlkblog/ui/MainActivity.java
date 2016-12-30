@@ -3,7 +3,11 @@ package hlk.com.hlkblog.ui;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -13,7 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import hlk.com.hlkblog.R;
 import hlk.com.hlkblog.base.BaseActivity;
-import hlk.com.hlkblog.fragment.BlogFragment;
+import hlk.com.hlkblog.fragment.WealFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -21,6 +25,8 @@ public class MainActivity extends BaseActivity {
     Toolbar mToolbar;
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    @Bind(R.id.navigation)
+    NavigationView mNavigationView;
     private ActionBarDrawerToggle mDrawerToggle;
 
 
@@ -35,15 +41,20 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initData() {
-        replaceFragment(R.id.frame_content, new BlogFragment());
+        replaceFragment(R.id.frame_content, new WealFragment());
     }
 
     private void initTitle() {
         mToolbar.setTitle(R.string.app_name);
         mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name) {
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -59,6 +70,16 @@ public class MainActivity extends BaseActivity {
         };
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Snackbar.make(mNavigationView, item.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
+//                item.setChecked(true);
+                mDrawerLayout.closeDrawers();
+
+                return false;
+            }
+        });
     }
 
     @Override
