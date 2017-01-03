@@ -18,9 +18,9 @@
             </intent-filter>
         </activity>
         <!--主页-->
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.MainActivity" />
+        <!--图片-->
+        <activity android:name=".ui.LookPictureActivity" />
     </application>
 
 </manifest>

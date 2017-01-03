@@ -1,6 +1,7 @@
 package hlk.com.hlkblog.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import hlk.com.hlkblog.R;
 import hlk.com.hlkblog.bean.GankBean;
+import hlk.com.hlkblog.ui.LookPictureActivity;
 
 /**
  * 福利适配器
@@ -43,8 +45,16 @@ public class WealRecycleAdapter extends RecyclerView.Adapter<WealRecycleAdapter.
 
 
     @Override
-    public void onBindViewHolder(WealRecycleAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(WealRecycleAdapter.ViewHolder holder, final int position) {
         Picasso.with(mContext).load(mList.get(position).url).into(holder.image);
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LookPictureActivity.class);
+                intent.putExtra("url", mList.get(position).url);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

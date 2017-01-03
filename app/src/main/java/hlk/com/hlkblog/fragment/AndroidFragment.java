@@ -1,7 +1,6 @@
 package hlk.com.hlkblog.fragment;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,32 +19,33 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import hlk.com.hlkblog.R;
-import hlk.com.hlkblog.adapter.WealRecycleAdapter;
+import hlk.com.hlkblog.adapter.AndroidRecycleAdapter;
 import hlk.com.hlkblog.bean.GankBean;
 import hlk.com.hlkblog.net.HttpUtils;
 import okhttp3.Call;
 
 /**
- * 福利
- * Created by hlk on 2016/12/30.
+ * Android
+ * Created by user on 2017/1/3.
  */
 
-public class WealFragment extends BaseFragment {
-
+public class AndroidFragment extends BaseFragment {
     @Bind(R.id.swipe_refresh)
     SwipeRefreshLayout mRefreshLayout;
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
     private GankBean gankBeen = new GankBean();
     private List<GankBean.Results> resultses = new ArrayList<>();
-    private WealRecycleAdapter adapter;
-    private int page = 1;
+    private AndroidRecycleAdapter adapter;
     private LinearLayoutManager layoutManager;
+    private int page = 1;
+    private boolean isScrool = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
 
     @Nullable
     @Override
@@ -60,50 +60,10 @@ public class WealFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         initView();
         initData();
-
+        registerListener();
     }
 
-    private void initData() {
-//        http://gank.io/api/random/data/Android/20
-//        http://gank.io/api/data/福利/10/1
-        if (page == 1) {
-            resultses.clear();
-        }
-        HttpUtils.get("http://gank.io/api/data/福利/10/" + page, new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                if (mRefreshLayout.isRefreshing()) {
-                    mRefreshLayout.setRefreshing(false);
-                }
-                isScrolling = true;
-            }
-
-            @Override
-            public void onResponse(String response, int id) {
-                if (mRefreshLayout.isRefreshing()) {
-                    mRefreshLayout.setRefreshing(false);
-                }
-                isScrolling = true;
-                gankBeen = JSON.parseObject(response, GankBean.class);
-                resultses.addAll(gankBeen.results);
-                adapter.setGankBean(resultses);
-//                mRecyclerView.setVerticalScrollbarPosition(gankBeen.results.size() - 1);
-            }
-        });
-    }
-
-    private boolean isScrolling;
-
-    private void initView() {
-        layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_blue_light);
-        adapter = new WealRecycleAdapter(getActivity(), resultses);
-        mRecyclerView.setAdapter(adapter);
-
+    private void registerListener() {
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -111,9 +71,8 @@ public class WealFragment extends BaseFragment {
                 initData();
             }
         });
+
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -122,25 +81,56 @@ public class WealFragment extends BaseFragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                int itemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+                int curtPostion = layoutManager.findLastCompletelyVisibleItemPosition();
                 int itemCount = layoutManager.getItemCount();
-                if (isScrolling && itemPosition >= itemCount - 3) {
-                    isScrolling = false;
-                    mRefreshLayout.setRefreshing(true);
+                if (isScrool && itemCount - curtPostion >= 3) {
+                    isScrool = false;
                     page++;
                     initData();
                 }
+
+            }
+        });
+    }
+
+    private void initData() {
+        if (page == 1) {
+            resultses.clear();
+        }
+        mRefreshLayout.setRefreshing(true);
+        HttpUtils.get("", new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                isScrool = true;
+                closeRefresh();
+
             }
 
+            @Override
+            public void onResponse(String response, int id) {
+                isScrool = true;
+                gankBeen = JSON.parseObject(response, GankBean.class);
+                resultses.addAll(gankBeen.results);
+                closeRefresh();
+            }
         });
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mRecyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+    private void initView() {
+        layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_blue_light);
+        adapter = new AndroidRecycleAdapter(getContext(), resultses);
+        mRecyclerView.setAdapter(adapter);
+    }
 
-                }
-            });
+
+    private void closeRefresh() {
+        if (mRefreshLayout.isRefreshing()) {
+            mRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -148,6 +138,4 @@ public class WealFragment extends BaseFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-
-
 }
