@@ -17,6 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import hlk.com.hlkblog.R;
 import hlk.com.hlkblog.base.BaseActivity;
+import hlk.com.hlkblog.fragment.AndroidFragment;
 import hlk.com.hlkblog.fragment.WealFragment;
 
 public class MainActivity extends BaseActivity {
@@ -73,6 +74,11 @@ public class MainActivity extends BaseActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if(item.getTitle().equals("Android")){
+                    replaceFragment(R.id.frame_content,new AndroidFragment());
+                }
+
                 Snackbar.make(mNavigationView, item.getTitle() + " pressed", Snackbar.LENGTH_LONG).show();
 //                item.setChecked(true);
                 mDrawerLayout.closeDrawers();

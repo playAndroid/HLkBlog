@@ -98,12 +98,11 @@ public class AndroidFragment extends BaseFragment {
             resultses.clear();
         }
         mRefreshLayout.setRefreshing(true);
-        HttpUtils.get("", new StringCallback() {
+        HttpUtils.get("http://gank.io/api/data/Android/10/" + page, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 isScrool = true;
                 closeRefresh();
-
             }
 
             @Override
@@ -112,6 +111,7 @@ public class AndroidFragment extends BaseFragment {
                 gankBeen = JSON.parseObject(response, GankBean.class);
                 resultses.addAll(gankBeen.results);
                 closeRefresh();
+                adapter.upData(resultses);
             }
         });
     }

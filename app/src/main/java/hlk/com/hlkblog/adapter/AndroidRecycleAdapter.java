@@ -2,10 +2,14 @@ package hlk.com.hlkblog.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
+import hlk.com.hlkblog.R;
 import hlk.com.hlkblog.bean.GankBean;
 
 /**
@@ -13,7 +17,7 @@ import hlk.com.hlkblog.bean.GankBean;
  * Created by user on 2017/1/3.
  */
 
-public class AndroidRecycleAdapter extends RecyclerView.Adapter {
+public class AndroidRecycleAdapter extends RecyclerView.Adapter<AndroidRecycleAdapter.ViewHolder> {
 
     private Context mContext;
     private List<GankBean.Results> mList;
@@ -30,13 +34,16 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+    public AndroidRecycleAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_android_list, parent,false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(AndroidRecycleAdapter.ViewHolder  holder, int position) {
+        holder.title.setText(mList.get(position).desc);
+        holder.who.setText(mList.get(position).who);
+        holder.time.setText(mList.get(position).createdAt);
     }
 
     @Override
@@ -45,5 +52,21 @@ public class AndroidRecycleAdapter extends RecyclerView.Adapter {
             return 0;
         }
         return mList.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView title;
+        private TextView dest;
+        private TextView who;
+        private TextView time;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            title = (TextView) itemView.findViewById(R.id.title);
+            dest = (TextView) itemView.findViewById(R.id.dest);
+            who = (TextView) itemView.findViewById(R.id.who);
+            time = (TextView) itemView.findViewById(R.id.time);
+        }
     }
 }

@@ -22,6 +22,7 @@ public class GankBean {
         public String url;
         public boolean used;
         public String who;
+        public List<String> images;
 
         @Override
         public String toString() {

@@ -49,6 +49,7 @@ public class LookPictureActivity extends BaseActivity {
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mToolBar.setTitle(R.string.navigation_weal);
         mToolBar.setTitleTextColor(Color.WHITE);
+        mToolBar.setBackgroundColor(Color.parseColor("#00000000"));
         setSupportActionBar(mToolBar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

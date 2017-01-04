@@ -101,6 +101,7 @@ public class WealFragment extends BaseFragment {
         mRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
+        mRefreshLayout.setRefreshing(true);
         adapter = new WealRecycleAdapter(getActivity(), resultses);
         mRecyclerView.setAdapter(adapter);
 
