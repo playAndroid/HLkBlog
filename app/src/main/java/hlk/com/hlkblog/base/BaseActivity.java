@@ -6,9 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import hlk.com.hlkblog.ui.MainActivity;
-import hlk.com.hlkblog.util.ToastUtils;
 
 /**
  * 小坤
@@ -41,7 +41,8 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (System.currentTimeMillis() - endTime > 2000 && this instanceof MainActivity) {
-                ToastUtils.toast_short(this, "再按一次退出");
+//                ToastUtils.toast_short(this, "再按一次退出");
+                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
                 endTime = System.currentTimeMillis();
                 return true;
             } else {

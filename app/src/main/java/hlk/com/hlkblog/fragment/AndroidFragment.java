@@ -34,16 +34,18 @@ public class AndroidFragment extends BaseFragment {
     SwipeRefreshLayout mRefreshLayout;
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
-    private GankBean gankBeen = new GankBean();
-    private List<GankBean.Results> resultses = new ArrayList<>();
-    private AndroidRecycleAdapter adapter;
-    private LinearLayoutManager layoutManager;
-    private int page = 1;
-    private boolean isScrool = false;
+    protected GankBean gankBeen = new GankBean();
+    protected List<GankBean.Results> resultses = new ArrayList<>();
+    protected AndroidRecycleAdapter adapter;
+    protected LinearLayoutManager layoutManager;
+    protected int page = 1;
+    protected boolean isScrool = false;
+    private boolean isiOs;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isiOs = this instanceof IOSFragment;
     }
 
 
@@ -63,7 +65,7 @@ public class AndroidFragment extends BaseFragment {
         registerListener();
     }
 
-    private void registerListener() {
+    protected void registerListener() {
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -83,7 +85,7 @@ public class AndroidFragment extends BaseFragment {
                 super.onScrolled(recyclerView, dx, dy);
                 int curtPostion = layoutManager.findLastCompletelyVisibleItemPosition();
                 int itemCount = layoutManager.getItemCount();
-                if (isScrool && itemCount - curtPostion >= 3) {
+                if (isScrool && curtPostion >= itemCount - 3) {
                     isScrool = false;
                     page++;
                     initData();
@@ -93,12 +95,13 @@ public class AndroidFragment extends BaseFragment {
         });
     }
 
-    private void initData() {
+    protected void initData() {
         if (page == 1) {
             resultses.clear();
         }
         mRefreshLayout.setRefreshing(true);
-        HttpUtils.get("http://gank.io/api/data/Android/10/" + page, new StringCallback() {
+        String project = isiOs ? "iOS" : "Android";
+        HttpUtils.get("http://gank.io/api/data/" + project + "/10/" + page, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 isScrool = true;
@@ -123,12 +126,12 @@ public class AndroidFragment extends BaseFragment {
         mRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_blue_light);
-        adapter = new AndroidRecycleAdapter(getContext(), resultses);
+        adapter = new AndroidRecycleAdapter(getContext(), resultses, isiOs ? AndroidRecycleAdapter.ProType.IOS : AndroidRecycleAdapter.ProType.ANDROID);
         mRecyclerView.setAdapter(adapter);
     }
 
 
-    private void closeRefresh() {
+    protected void closeRefresh() {
         if (mRefreshLayout.isRefreshing()) {
             mRefreshLayout.setRefreshing(false);
         }

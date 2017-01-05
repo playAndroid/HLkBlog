@@ -25,4 +25,10 @@ public class MyApplication extends Application {
         }
         LeakCanary.install(this);
     }
+
+
+
+//    public static Context geteContext(){
+//        return
+//    }
 }
