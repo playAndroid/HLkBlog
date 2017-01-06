@@ -18,8 +18,11 @@ import butterknife.ButterKnife;
 import hlk.com.hlkblog.R;
 import hlk.com.hlkblog.base.BaseActivity;
 import hlk.com.hlkblog.fragment.AndroidFragment;
+import hlk.com.hlkblog.fragment.BoredPicFragment;
 import hlk.com.hlkblog.fragment.IOSFragment;
+import hlk.com.hlkblog.fragment.VideoFragment;
 import hlk.com.hlkblog.fragment.WealFragment;
+import hlk.com.hlkblog.fragment.YoungerSisterFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -86,6 +89,15 @@ public class MainActivity extends BaseActivity {
                         break;
                     case "iOS":
                         replaceFragment(R.id.frame_content, new IOSFragment());
+                        break;
+                    case "休息视频":
+                        replaceFragment(R.id.frame_content, new VideoFragment());
+                        break;
+                    case "妹子":
+                        replaceFragment(R.id.frame_content, new YoungerSisterFragment());
+                        break;
+                    case "无聊图":
+                        replaceFragment(R.id.frame_content,new BoredPicFragment());
                         break;
                 }
 

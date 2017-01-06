@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">myblog</string>
+    <string name="app_name">PlayTime</string>
     <string name="navigation_peri">妹子</string>
     <string name="navigation_joke">段子</string>
     <string name="navigation_bored">无聊图</string>
@@ -34,4 +34,10 @@
         <item>"任何时候都可以开始做自己想做的事"</item>
         <item>"你只有足够努力,才能与你喜欢的更相配</item>
     </string-array>
+    <!--layout所用 描述-->
+    <string name="dest">描述</string>
+    <string name="author">作者</string>
+    <string name="time">时间</string>
+    <string name="read_count">阅读数</string>
+    <string name="comment_count">评论数</string>
 </resources>

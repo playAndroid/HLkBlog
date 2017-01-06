@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="5dp"
-    app:cardElevation="5dp"
     app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -18,6 +18,7 @@
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:contentDescription="@string/dest"
             android:scaleType="centerCrop"
             android:src="@drawable/android_bg" />
 
@@ -31,13 +32,12 @@
                 android:id="@+id/dest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="描述"
+                android:text="@string/dest"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/content_size" />
 
@@ -45,7 +45,6 @@
                 android:id="@+id/rl_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/dest"
                 android:layout_marginBottom="3dp">
 
                 <TextView
@@ -54,8 +53,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="15dp"
-                    android:layout_toLeftOf="@+id/time"
-                    android:text="作者"
+                    android:layout_toStartOf="@+id/time"
+                    android:text="@string/author"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_size" />
 
@@ -63,10 +62,10 @@
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"
-                    android:text="时间"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/time"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_size" />
             </RelativeLayout>
