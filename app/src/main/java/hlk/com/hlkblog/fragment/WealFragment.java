@@ -66,9 +66,7 @@ public class WealFragment extends BaseFragment {
     private void initData() {
 //        http://gank.io/api/random/data/Android/20
 //        http://gank.io/api/data/福利/10/1
-        if (page == 1) {
-            resultses.clear();
-        }
+
         HttpUtils.get("http://gank.io/api/data/福利/10/" + page, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -80,6 +78,9 @@ public class WealFragment extends BaseFragment {
 
             @Override
             public void onResponse(String response, int id) {
+                if (page == 1) {
+                    resultses.clear();
+                }
                 if (mRefreshLayout.isRefreshing()) {
                     mRefreshLayout.setRefreshing(false);
                 }

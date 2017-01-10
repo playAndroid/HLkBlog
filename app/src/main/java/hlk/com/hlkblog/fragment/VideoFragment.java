@@ -94,9 +94,7 @@ public class VideoFragment extends BaseFragment {
     }
 
     protected void initData() {
-        if (page == 1) {
-            resultses.clear();
-        }
+
         mRefreshLayout.setRefreshing(true);
         HttpUtils.get("http://gank.io/api/data/休息视频/10/" + page, new StringCallback() {
             @Override
@@ -107,6 +105,9 @@ public class VideoFragment extends BaseFragment {
 
             @Override
             public void onResponse(String response, int id) {
+                if (page == 1) {
+                    resultses.clear();
+                }
                 isScrool = true;
                 gankBeen = JSON.parseObject(response, GankBean.class);
                 resultses.addAll(gankBeen.results);

@@ -96,9 +96,7 @@ public class AndroidFragment extends BaseFragment {
     }
 
     protected void initData() {
-        if (page == 1) {
-            resultses.clear();
-        }
+
         mRefreshLayout.setRefreshing(true);
         String project = isiOs ? "iOS" : "Android";
         HttpUtils.get("http://gank.io/api/data/" + project + "/10/" + page, new StringCallback() {
@@ -110,6 +108,9 @@ public class AndroidFragment extends BaseFragment {
 
             @Override
             public void onResponse(String response, int id) {
+                if (page == 1) {
+                    resultses.clear();
+                }
                 isScrool = true;
                 gankBeen = JSON.parseObject(response, GankBean.class);
                 resultses.addAll(gankBeen.results);
