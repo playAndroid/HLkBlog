@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hlk.com.hlkblog">
 
+    <!--联网权限-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--网络状态改变权限-->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <!--访问网络状态权限-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:name=".base.MyApplication"
         android:allowBackup="false"
@@ -18,7 +23,11 @@
             </intent-filter>
         </activity>
         <!--主页-->
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation"
+            />
         <!--图片-->
         <activity android:name=".ui.LookPictureActivity" />
     </application>
